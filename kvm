@@ -1,0 +1,116 @@
+https://phoenixnap.com/kb/ubuntu-install-kvm
+
+Check Virtualization Support on Ubuntu 20.04
+1. Before you begin with installing KVM, check if your CPU supports hardware virtualization:
+
+// egrep -c '(vmx|svm)' /proc/cpuinfo
+
+If the command returns a value of 0, your processor is not capable of running KVM. On the other hand, any other number means you can proceed with the installation.
+
+2. Now, check if your system can use KVM acceleration by typing:
+
+//sudo kvm-ok
+If kvm-ok returns an error stating KVM acceleration cannot be used, try solving the problem by installing cpu-checker.
+
+3. To install cpu-checker, run the following command:
+
+//sudo apt install cpu-checker
+
+4. When the installation completes, //restart the terminal.
+
+You are now ready to start installing KVM.
+
+Step 1: Install KVM Packages
+1. First, update the repositories:
+
+//sudo apt update
+
+2. Then, install essential KVM packages with the following command:
+
+//sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+
+3. When prompted, type Y, press ENTER, and wait for the installation to finish.
+
+Step 2: Authorize Users
+1. Only members of the libvirt and kvm user groups can run virtual machines. Add a user to the libvirt group by typing:
+
+//sudo adduser ‘username’ libvirt
+
+Replace username with the actual username.
+
+Adding a user to the libvirt usergroup
+2. Now do the same for the kvm group:
+
+//sudo adduser ‘[username]’ kvm   
+
+Step 3: Verify the Installation
+1. Confirm the installation was successful by using the virsh command:
+
+//virsh list --all
+
+2. Or use the systemctl command to check the status of libvirtd:
+
+//sudo systemctl status libvirtd
+
+3. Press Q to quit the status screen.
+
+4. If the virtualization daemon is not active, activate it with the following command:
+
+//sudo systemctl enable --now libvirtd
+
+Creating a Virtual Machine on Ubuntu 20.04
+1. Before you choose one of the two methods listed below, install virt-manager, a tool for creating and managing VMs:
+
+//sudo apt install virt-manager
+
+2. Type Y and press ENTER. Wait for the installation to finish.
+
+Make sure you download an ISO containing the OS you wish to install on a VM and proceed to pick an installation method.
+
+Method 1: Virt Manager GUI
+1. Start virt-manager with:
+
+//sudo virt-manager
+
+2. In the first window, click the computer icon in the upper-left corner.
+
+//forward click krna
+3. In the dialogue box that opens, select the option to install the VM using an ISO image. Then click Forward.
+
+Selecting the option to install from an ISO file in virt manager on Ubuntu 20.04
+4. In the next dialogue, click Browse Local and navigate to the path where you stored the ISO you wish to install.
+
+Choosing storage volume in virt manager on Ubuntu 20.04
+5. The ISO you chose in the previous window populates the field in Step 2. Proceed to Step 3 by clicking Forward.
+
+Confirming the ISO selection in virt manager on Ubuntu 20.04
+6. Enter the amount of RAM and the number of CPUs you wish to allocate to the VM and proceed to the next step.
+
+Allocating memory and CPUs in virt manager on Ubuntu 20.04
+7. Allocate hard disk space to the VM. Click Forward to go to the last step.
+
+Creating a disk image in virt manager on Ubuntu 20.04
+8. Specify the name for your VM and click Finish to complete the setup.
+
+Naming the VM in virt manager on Ubuntu 20.04
+9. The VM starts automatically, prompting you to start installing the OS that’s on the ISO file.
+
+Virtual machine OS installation screen in virt manager on Ubuntu 20.04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
