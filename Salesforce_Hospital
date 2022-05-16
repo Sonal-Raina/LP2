@@ -1,0 +1,22 @@
+// Hospital Management 
+
+public class Hospital1 {
+    String [] arrayOfPatients = new List<String>();
+    Integer [] patientAge = new List<Integer>();
+    
+    public void addPatient(String name, Integer age){
+        arrayOfPatients.add(name);
+        patientAge.add(age);
+        system.debug('Added the details for '+ name);
+    }
+    
+    public void showPatients(){
+        for(Integer i=0; i<arrayOfPatients.size(); i++){
+            system.debug(arrayOfPatients[i] + '\t\t'+ patientAge[i]);
+        }
+    }
+}
+
+// debug then open execute windows then Hospital1 H1 = new Hospital1();
+// H1.addPatients('sonal',10);
+//H1.showPatients();
