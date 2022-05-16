@@ -1,0 +1,51 @@
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+sudo kvm-ok
+
+sudo apt install cpu-checker
+
+//Restart the terminal
+
+//Install KVM on ubuntu
+
+///Step 1: Install KVM package :
+
+sudo apt update
+
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+
+//When prompted, type Y, press ENTER, and wait for the installation to finish.
+
+///Step2: Authorize Users
+
+sudo adduser ‘username’ libvirt
+
+//Replace username with the actual username.
+
+sudo adduser ‘[username]’ kvm
+
+///Step 3: Verify the Installation
+
+virsh list --all
+
+sudo systemctl status libvirtd
+
+If everything is functioning properly, the output returns an active (running) status.
+
+Checking the status of the virtualization daemon with systemctl
+3. Press Q to quit the status screen.
+
+4. If the virtualization daemon is not active, activate it with the following command:
+
+sudo systemctl enable --now libvirtd
+
+////Step4: Creating a VMachine
+sudo apt install virt-manager
+
+Type Y and press ENTER. Wait for the installation to finish.
+
+Make sure you download an ISO containing the OS you wish to install on a VM and proceed to pick an installation method.
+
+sudo virt-manager
+
+forward forward and finish.
