@@ -1,0 +1,335 @@
+// 1.Bfs dfs
+
+Breadth First Search:
+BFS stands for Breadth First Search is a vertex-based technique for finding the shortest path in the graph. It uses a Queue data structure that follows first in first out. In BFS, one vertex is selected at a time when it is visited and marked then its adjacent are visited and stored in the queue. It is slower than DFS. 
+Example:
+
+ Input:
+        A
+       / \
+      B   C
+     /   / \
+    D   E   F
+    Output: 
+
+A, B, C, D, E, F
+Depth First Search:
+DFS stands for Depth First Search is an edge-based technique. It uses the Stack data structure and performs two stages, first visited vertices are pushed into the stack, and second if there are no vertices then visited vertices are popped. 
+Example: 
+
+  Input:
+        A
+       / \
+      B   C
+     /   / \
+    D   E   F
+Output: 
+
+A, B, D, C, E, F
+
+1.	BFS stands for Breadth First Search.	DFS stands for Depth First Search.
+2.	BFS(Breadth First Search) uses Queue data structure for finding the shortest path.	DFS(Depth First Search) uses Stack data structure.
+3.	BFS can be used to find single source shortest path in an unweighted graph, because in BFS, we reach a vertex with minimum number of edges from a source vertex.	In DFS, we might traverse through more edges to reach a destination vertex from a source.
+4.	BFS is more suitable for searching vertices which are closer to the given source.	DFS is more suitable when there are solutions away from source.
+5.	BFS considers all neighbors first and therefore not suitable for decision making trees used in games or puzzles.	DFS is more suitable for game or puzzle problems. We make a decision, then explore all paths through this decision. And if this decision leads to win situation, we stop.
+6.	The Time complexity of BFS is O(V + E) when Adjacency List is used and O(V^2) when Adjacency Matrix is used, where V stands for vertices and E stands for edges.	The Time complexity of DFS is also O(V + E) when Adjacency List is used and O(V^2) when Adjacency Matrix is used, where V stands for vertices and E stands for edges.
+7.	Here, siblings are visited before the children	Here, children are visited before the siblings
+8.	In BFS there is no concept of backtracking. 	DFS algorithm is a recursive algorithm tha
+9.	BFS is used in various application such as  bipartite graph, and shortest path etc.	DFS is used in various application such as acyclic graph and topological order etc.
+10.	BFS requires more memory. 	DFS requires less memory. 
+
+IDDFS combines depth-first search’s space-efficiency and breadth-first search’s fast search (for nodes closer to root).
+
+How does IDDFS work?
+IDDFS calls DFS for different depths starting from an initial value. In every call, DFS is restricted from going beyond given depth. So basically we do DFS in a BFS fashion.
+//algo BFS
+Step 1: SET STATUS = 1 (ready state) for each node in G
+
+Step 2: Enqueue the starting node A and set its STATUS = 2 (waiting state)
+
+Step 3: Repeat Steps 4 and 5 until QUEUE is empty
+
+Step 4: Dequeue a node N. Process it and set its STATUS = 3 (processed state).
+
+Step 5: Enqueue all the neighbours of N that are in the ready state (whose STATUS = 1) and set
+
+their STATUS = 2
+
+(waiting state)
+
+[END OF LOOP]
+
+Step 6: EXIT
+
+// DFS Algorithm
+Step 1: SET STATUS = 1 (ready state) for each node in G
+
+Step 2: Push the starting node A on the stack and set its STATUS = 2 (waiting state)
+
+Step 3: Repeat Steps 4 and 5 until STACK is empty
+
+Step 4: Pop the top node N. Process it and set its STATUS = 3 (processed state)
+
+Step 5: Push on the stack all the neighbors of N that are in the ready state (whose STATUS = 1) and set their STATUS = 2 (waiting state)
+
+[END OF LOOP]
+
+Step 6: EXIT
+
+
+
+//2. astar
+
+What is A* Search Algorithm? 
+A* Search algorithm is one of the best and popular technique used in path-finding and graph traversals.
+
+Why A* Search Algorithm? 
+Informally speaking, A* Search algorithms, unlike other traversal techniques, it has “brains”. What it means is that it is really a smart algorithm which separates it from the other conventional algorithms. This fact is cleared in detail in below sections. 
+And it is also worth mentioning that many games and web-based maps use this algorithm to find the shortest path very efficiently (approximation). 
+F(n)=g(n)+h(n)
+
+Algorithm 
+We create two lists – Open List and Closed List (just like Dijkstra Algorithm)  
+
+// A* Search Algorithm
+1.  Initialize the open list
+2.  Initialize the closed list
+    put the starting node on the open 
+    list (you can leave its f at zero)
+
+3.  while the open list is not empty
+    a) find the node with the least f on 
+       the open list, call it "q"
+
+    b) pop q off the open list
+  
+    c) generate q's 8 successors and set their 
+       parents to q
+   
+    d) for each successor
+        i) if successor is the goal, stop search
+        
+        ii) else, compute both g and h for successor
+          successor.g = q.g + distance between 
+                              successor and q
+          successor.h = distance from goal to 
+          successor (This can be done using many 
+          ways, we will discuss three heuristics- 
+          Manhattan, Diagonal and Euclidean 
+          Heuristics)
+          
+          successor.f = successor.g + successor.h
+
+        iii) if a node with the same position as 
+            successor is in the OPEN list which has a 
+           lower f than successor, skip this successor
+
+        iV) if a node with the same position as 
+            successor  is in the CLOSED list which has
+            a lower f than successor, skip this successor
+            otherwise, add  the node to the open list
+     end (for loop)
+  
+    e) push q on the closed list
+    end (while loop)
+   
+   Time: O(E) - edges
+   
+   
+   
+   ///3.selectionsort
+   
+   A greedy algorithm is any algorithm that follows the problem-solving heuristic of making the locally optimal choice at each stage.
+   What are 2 advantages of a greedy algorithm?
+The choice made by a Greedy algorithm may depend on earlier choices but not on the future.
+...
+Advantages
+Greedy approach is easy to implement.
+Typically have less time complexities.
+Greedy algorithms can be used for optimization purposes or finding close to optimization in case of NP Hard problems.
+
+What are the disadvantages of greedy algorithm?
+Limitations of Greedy Algorithms. Sometimes greedy algorithms fail to find the globally optimal solution because they do not consider all the data. The choice made by a greedy algorithm may depend on choices it has made so far, but it is not aware of future choices it could make.
+
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
+
+The subarray which is already sorted. 
+Remaining subarray which is unsorted.
+In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. 
+
+Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}
+
+First pass:
+
+For the first position in the sorted array, the whole array is traversed from index 0 to 4 sequentially. The first position where 64 is stored presently, after traversing whole array it is clear that 11 is the lowest value.
+   64   	   25   	   12   	   22   	   11   
+Thus, replace 64 with 11. After one iteration 11, which happens to be the least value in the array, tends to appear in the first position of the sorted list.
+   11   	   25   	   12   	   22   	   64   
+   
+   Approach:
+Initialize minimum value(min_idx) to location 0
+Traverse the array to find the minimum element in the array
+While traversing if any element smaller than min_idx is found then swap both the values.
+Then, increment min_idx to point to next element
+Repeat until array is sorted
+
+o(n2)
+
+
+///4.nqueens
+
+Constraint satisfaction Problem : Constraint satisfaction problems are mathematical questions defined as a set of objects whose state must satisfy a number of constraints or limitations. CSPs represent the entities in a problem as a homogeneous collection of finite constraints over variables, which is solved by constraint satisfaction methods.
+Backtracking Algorithm 
+The idea is to place queens one by one in different columns, starting from the leftmost column. When we place a queen in a column, we check for clashes with already placed queens. In the current column, if we find a row for which there is no clash, we mark this row and column as part of the solution. If we do not find such a row due to clashes then we backtrack and return false.
+ 
+The N Queen is the problem of placing N chess queens on an N×N chessboard so that no two queens attack each other. For example, following is a solution for 4 Queen problem.
+ 
+The expected output is a binary matrix which has 1s for the blocks where queens are placed. For example, following is the output matrix for above 4 queen solution.
+ 
+
+              { 0,  1,  0,  0}
+              { 0,  0,  0,  1}
+              { 1,  0,  0,  0}
+              { 0,  0,  1,  0}
+
+algo: 
+1) Start in the leftmost column
+2) If all queens are placed
+    return true
+3) Try all rows in the current column. 
+   Do the following for every tried row.
+    a) If the queen can be placed safely in this row 
+       then mark this [row, column] as part of the 
+       solution and recursively check if placing
+       queen here leads to a solution.
+    b) If placing the queen in [row, column] leads to
+       a solution then return true.
+    c) If placing queen doesn't lead to a solution then
+       unmark this [row, column] (Backtrack) and go to 
+       step (a) to try other rows.
+4) If all rows have been tried and nothing worked,
+   return false to trigger backtracking.
+
+//Constraint Branch bound
+
+In backtracking solution we backtrack when we hit a dead end. In Branch and Bound solution, after building a partial solution, we figure out that there is no point going any deeper as we are going to hit a dead end. 
+
+Let’s begin by describing backtracking solution. “The idea is to place queens one by one in different columns, starting from the leftmost column. When we place a queen in a column, we check for clashes with already placed queens. In the current column, if we find a row for which there is no clash, we mark this row and column as part of the solution. If we do not find such a row due to clashes, then we backtrack and return false.”
+
+For the 1st Queen, there are total 8 possibilities as we can place 1st Queen in any row of first column. Let’s place Queen 1 on row 3.
+After placing 1st Queen, there are 7 possibilities left for the 2nd Queen. But wait, we don’t really have 7 possibilities. We cannot place Queen 2 on rows 2, 3 or 4 as those cells are under attack from Queen 1. So, Queen 2 has only 8 – 3 = 5 valid positions left.
+After picking a position for Queen 2, Queen 3 has even fewer options as most of the cells in its column are under attack from the first 2 Queens.
+We need to figure out an efficient way of keeping track of which cells are under attack. In previous solution we kept an 8­-by­-8 Boolean matrix and update it each time we placed a queen, but that required linear time to update as we need to check for safe cells.
+Basically, we have to ensure 4 things: 
+
+1. No two queens share a column. 
+2. No two queens share a row. 
+3. No two queens share a top-right to left-bottom diagonal. 
+4. No two queens share a top-left to bottom-right diagonal.
+
+Number 1 is automatic because of the way we store the solution. For number 2, 3 and 4, we can perform updates in O(1) time. The idea is to keep three Boolean arrays that tell us which rows and which diagonals are occupied.
+
+Performance: 
+When run on local machines for N = 32, the backtracking solution took 659.68 seconds while above branch and bound solution took only 119.63 seconds. The difference will be even huge for larger values of N.
+
+ O(n^2) 
+ 
+ 
+ ///5.Chatbot
+ 
+ A chatbot or chatterbot is a software application used to conduct an on-line chat conversation via text or text-to-speech, in lieu of providing direct contact with a live human agent.A chatbot is a type of software that can help customers by automating conversations and interact with them through messaging platforms.
+ uses : 1.contnet marketing, customer services , notifications ,location of sites
+ 
+Advantages: Why chatbots are a powerful partner for your company?
+They help you get to know your customers.
+They're a selling machine.
+Customer service at any time.
+They help optimize costs.
+They improve customer satisfaction.
+A Chatbot is not a person.
+You need time for implementation.
+They need maintenance.
+
+What are the drawbacks of chatbots?
+Drawbacks or disadvantages of Chatbot
+
+➨Certain chatbots are poor in processing and takes time to filter results. This annoys the users. ➨Different chatbots require different installation procedures and hence increases initial installation cost unlike human beings.
+
+algorithm : set message certainly =0
+2. calculatr how many words are present in predefined words
+3.check that required words are in string
+4.simplifies response creation add it to dict
+5.print response
+6.exit
+
+
+///6.expert system
+
+An expert system is a computer program that uses artificial intelligence (AI) technologies to simulate the judgment and behavior of a human or an organization that has expert knowledge and experience in a particular field.
+What are four advantages of an expert system?
+An expert system is used for applications such as human resources, stock market, and so on. Key benefits of expert systems are better decision quality, cost reduction, consistency, speed, and reliability.
+Limitations of Expert System
+
+The response of the expert system may get wrong if the knowledge base contains the wrong information. Like a human being, it cannot produce a creative output for different scenarios. Its maintenance and development costs are very high. Knowledge acquisition for designing is much difficult
+
+algo: hosptial management system 
+
+
+///7.kvm
+
+What is meant by KVM?
+Kernel-based Virtual Machine (KVM) is an open source virtualization technology built into Linux®. Specifically, KVM lets you turn Linux into a hypervisor that allows a host machine to run multiple, isolated virtual environments called guests or virtual machines (VMs).
+benefits : security,scalability,maturity,cost-effiency,performance
+KVM
+Advantages	Disadvantages
+Better security thanks to the isolation of system resources    	Administration of the whole virtual entity
+Clear allocation of resources	                       Longer set-up time with a new entity, even if automation tools are being used
+
+
+////8.salesforce
+
+Salesforce, Inc. is an American cloud-based software company headquartered in San Francisco, California. It provides customer relationship management software and applications focused on sales, customer service, marketing automation, analytics, and application development
+
+Apex is a strongly typed, object-oriented programming language that allows developers to execute flow and transaction control statements on the Lightning platform server in conjunction with calls to the Lightning Platform​ API.
+
+features of apex: 1.easy to use ,integrated ,strongly typed , easy to test
+
+Advantages -
+
+o - Very fast to prototype and subsequently deliver
+o - Extremely simple development paradigm
+o - Removes the need to get involved in things peripheral to the project design (such as connection pooling etc).
+o - Easy to maintain due to few moving parts
+o - Extremely fast to implement changes
+o - Very scalable
+o - Easier to design optimal and reusable code since it all 'lives' in the database
+
+dis- creation of threads is not possible on apex
+developers cannot change the standard function of the program if it is required
+the user interface does not show elements
+
+steps:Steps To Setup The App
+Click on Setup button next to app name in top right corner.
+In the bar which is on the left side, go to Build → select Create → select Apps from the drop down menu.
+Click on New as shown in the below screenshot.
+Choose Custom App.
+Enter the App Label. ...
+Choose a profile picture for your app.
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
